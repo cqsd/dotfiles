@@ -1,0 +1,60 @@
+" ----------------- VIM BUILTIN SHIT ----------------- "
+let mapleader = ","
+
+" ------ Appearance ------
+set background=dark
+colorscheme solarized
+set number ruler
+set cursorline scrolloff=6
+
+" ------ Search ------
+set incsearch hlsearch
+nnoremap \ :noh <CR>
+set ignorecase smartcase
+
+" ------ Editing ------
+set pastetoggle=<F5>
+
+" Prevent showing @ signs when a really long line doesn't fit entirely on the
+" screen. See :help 'display'.
+set display+=lastline
+set noshowmode " Hides the default mode text that's usually below the powerline
+set showtabline=2 " always show tabs, even if only one is open
+
+" ------ Code format ------
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+set showmatch
+syntax on
+filetype plugin indent on
+
+" ------ Movement -------
+nnoremap B ^
+nnoremap E $
+
+" Move by visual line instead of actual line; when a line wraps around, j will
+" now move down to the wrapped text instead of skipping over it.
+nnoremap j gj
+nnoremap k gk
+" Snap line under cursor to middle of screen.
+nnoremap <Space> zz
+
+" Autoset a mark for the previous mark in any fuckin file
+autocmd BufLeave *.txt normal! mP
+
+" ------ Splits ------
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+" Make the splitting behavior a bit more sensible.
+set splitbelow splitright
+
+" ------ Buffers ------
+nnoremap <C-q> :bprevious<CR>
+nnoremap <C-e> :bnext<CR>
+nnoremap <C-t> :enew<CR>
+nnoremap <C-d> :bdelete<CR>
+
+" Quick-close scratches (preview windows)
+map <C-\> :pc <CR>
+
