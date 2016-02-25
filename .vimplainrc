@@ -3,7 +3,7 @@ let mapleader = ","
 
 " ------ Appearance ------
 set background=dark
-colorscheme solarized
+colorscheme zenburn
 set number ruler
 set cursorline scrolloff=6
 
@@ -38,7 +38,7 @@ nnoremap k gk
 " Snap line under cursor to middle of screen.
 nnoremap <Space> zz
 
-" Autoset a mark for the previous mark in any fuckin file
+" Autoset a mark for the previous mark
 autocmd BufLeave *.txt normal! mP
 
 " ------ Splits ------
@@ -54,6 +54,8 @@ nnoremap <C-q> :bprevious<CR>
 nnoremap <C-e> :bnext<CR>
 nnoremap <C-t> :enew<CR>
 nnoremap <C-d> :bdelete<CR>
+" Keep unfocused buffers loaded
+set hidden
 
 " Quick-close scratches (preview windows)
 map <C-\> :pc <CR>
