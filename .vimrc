@@ -8,7 +8,7 @@ source ~/.vimplainrc
 
 let g:airline_powerline_fonts = 1
 set laststatus=2 " Make airline appear all the time
-" Fugitive; show current branch
+" XXX Fugitive; show current branch
 let g:airline_section_y = '%{fugitive#statusline()}'
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -32,26 +32,29 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" Make syntastic use python3 for syntax checking
+let g:syntastic_python_python_exec = 'python3'
+
 " the popup for neocomplete
 let g:neocomplete#use_vimproc = 1
 let g:neocomplete#disable_auto_complete = 0
 
 " Syntastic shit
- set statusline+=%#warningmsg#
- set statusline+=%{SyntasticStatuslineFlag()}
- set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 " rainbow_parens
 let g:rainbow_active = 1
 
-let g:slimv_preferred = 'clozure'
-let g:slimv_repl_split = 4
-let g:slimv_disable_clojure = 2
+"" Deleted slimv (use spacemacs instead)
+"let g:slimv_preferred = 'clozure'
+"let g:slimv_repl_split = 4
+"let g:slimv_disable_clojure = 2
 " XXX next line is really broken
 "let g:slimv_lisp = '"java -cp clojure.jar;clojure-contrib.jar clojure.main"'
 
 " Rust (Racer.vim)
-set hidden
 let g:race_cmd = "/Users/tpm/.rust_source/racer/target/release/racer"
 let $RUST_SRC_PATH="/Users/tpm/.rust_source/rust/src"
 
@@ -68,7 +71,6 @@ let g:neocomplete#sources#omni#input_patterns.rust =
 autocmd FileType rust compiler cargo
 autocmd FileType lisp set completeopt=longest,menuone
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"autocmd FileType tex compiler pdflatex
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 "" Tries to evaluate clj buffers on load for vim-clojure-highlight
@@ -76,11 +78,12 @@ autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 " autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
 
 " For MacVim GUI
-set guifont=Hack:h11
 
 set guioptions-=e
+set guifont=Inconsolata\ for\ Powerline:h14
 
 if has('gui_running')
-  colorscheme solarized
-  set background=light
+  colorscheme zenburn
+  "colorscheme solarized
+  "set background=light
 endif

@@ -18,32 +18,18 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
      clojure
      emacs-lisp
      git
-     ;; markdown
      org
      osx
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
+     scheme
      syntax-checking
      version-control
      )
-   ;; List of additional packages that will be installed without being
-   ;; wrapped in a layer. If you need some configuration for these
-   ;; packages, then consider creating a layer. You can also put the
-   ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
-   ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -237,15 +223,34 @@ values."
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
-It is called immediately after `dotspacemacs/init'.  You are free to put almost
-any user code here.  The exception is org related code, which should be placed
-in `dotspacemacs/user-config'."
+  It is called immediately after `dotspacemacs/init'.  You are free to put almost
+  any user code here.  The exception is org related code, which should be placed
+  in `dotspacemacs/user-config'."
+  ;; convention is to put manually-installed packages here
+  ;; Optionally, specify the lisp program you are using. Default is "lisp"
+                                        ;(setq inferior-lisp-program "csi -:c")
+  (setq scheme-program-name "guile")
+  (add-to-list 'load-path "~/.emacs.d/lisp/")
   )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (define-key evil-motion-state-map "j" 'evil-next-visual-line)
+  (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
+  ;; Also in visual mode
+  (define-key evil-visual-state-map "j" 'evil-next-visual-line)
+  (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+  ;; match paredit.vim key-binding
+  (define-key evil-normal-state-map ",W" " kw")  ; wrap with ()
+  (define-key evil-normal-state-map ",w["        ; wrap with []
+    (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "[")))
+  (define-key evil-normal-state-map ",w{"        ; wrap with {}
+    (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "{")))
+  ;; These are different from vim, here cursor should NOT be on delimits
+  (define-key evil-normal-state-map ",>" " ks")  ; forward slurp
+  (define-key evil-normal-state-map ",<" " kS")  ; backward slurp
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
