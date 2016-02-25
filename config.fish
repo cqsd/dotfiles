@@ -1,0 +1,28 @@
+fish_vi_mode
+
+alias e=vim
+alias tree="tree -C"
+alias java_home="/usr/libexec/java_home"
+
+# Actually needs to be global
+set -gx ANDROID_SDK_PATH $HOME/android-sdk
+
+set ANDROID_SDK_TOOLS $HOME/Library/Android/sdk/tools
+set CLOJURE_HOME $HOME/.m2/repository/org/clojure/clojure/1.7.0 # this is only for 1.7.0 though
+set HOME_BIN $HOME/bin
+set MATLAB_HOME /Applications/MATLAB_R2015b.app/bin
+set RUST_SRC $HOME/.rust_source/rust/src
+set RUST_RACER $HOME/.rust_source/racer/target/release
+# set SCALA_HOME /usr/local/opt/scala/idea # For IntelliJ, in case I ever decide to use an IDE
+set TEXINPUTS $HOME/.latex
+set TEXINPUTS $TECHINPUTS $HOME/.latex/neil-tex
+set TEX_BIN /usr/texbin
+
+set -gx PATH $PATH $CLOJURE_HOME $HOME_BIN $MATLAB_HOME $RUST_SRC $RUST_RACER $TEX_BIN $TEXINPUTS $ANDROID_SDK_TOOLS
+
+# Because I'm going to kms if I have to keep typing this out in full
+set FISH_HOME $HOME/.config/fish/
+
+function edit_fish_conf
+  e $FISH_HOME/config.fish
+end
