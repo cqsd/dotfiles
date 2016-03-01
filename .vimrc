@@ -8,8 +8,8 @@ source ~/.vimplainrc
 
 let g:airline_powerline_fonts = 1
 set laststatus=2 " Make airline appear all the time
-" XXX Fugitive; show current branch
-let g:airline_section_y = '%{fugitive#statusline()}'
+" Fugitive; show current branch (redundant bc airline does this already)
+" let g:airline_section_y = '%{fugitive#statusline()}'
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
@@ -47,10 +47,9 @@ set statusline+=%*
 " rainbow_parens
 let g:rainbow_active = 1
 
-"" Deleted slimv (use spacemacs instead)
-"let g:slimv_preferred = 'clozure'
-"let g:slimv_repl_split = 4
-"let g:slimv_disable_clojure = 2
+let g:slimv_preferred = 'clozure'
+let g:slimv_repl_split = 4
+let g:slimv_disable_clojure = 2
 " XXX next line is really broken
 "let g:slimv_lisp = '"java -cp clojure.jar;clojure-contrib.jar clojure.main"'
 
@@ -66,6 +65,9 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 let g:neocomplete#sources#omni#input_patterns.rust =
     \ '[^.[:digit:] *\t]\%(\.\|\::\)\%(\h\w*\)\?'
+
+" vim-slime config (tmux is not default)
+let g:slime_target = "tmux"
 
 " ------ Filetype-specific ------
 autocmd FileType rust compiler cargo
