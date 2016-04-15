@@ -59,4 +59,3 @@ set hidden
 
 " Quick-close scratches (preview windows)
 map <C-\> :pc <CR>
-
