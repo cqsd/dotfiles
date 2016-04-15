@@ -1,9 +1,8 @@
 " --------------------- PLUGINS  ---------------------
-
 execute pathogen#infect()
 map <C-n> :NERDTreeToggle<CR>
 source ~/.neocompleterc
-source ~/.rainbow-parensrc
+" source ~/.rainbow-parensrc
 source ~/.vimplainrc
 
 let g:airline_powerline_fonts = 1
@@ -35,39 +34,30 @@ let g:syntastic_check_on_wq = 0
 " Make syntastic use python3 for syntax checking
 let g:syntastic_python_python_exec = 'python3'
 
-" the popup for neocomplete
-let g:neocomplete#use_vimproc = 1
-let g:neocomplete#disable_auto_complete = 0
-
 " Syntastic shit
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " rainbow_parens
-let g:rainbow_active = 1
+" let g:rainbow_active = 1
 
 let g:slimv_preferred = 'clozure'
 let g:slimv_repl_split = 4
 let g:slimv_disable_clojure = 2
 " XXX next line is really broken
 "let g:slimv_lisp = '"java -cp clojure.jar;clojure-contrib.jar clojure.main"'
+let g:paredit_disable_clojure = 1
 
 " Rust (Racer.vim)
 let g:race_cmd = "/Users/tpm/.rust_source/racer/target/release/racer"
 let $RUST_SRC_PATH="/Users/tpm/.rust_source/rust/src"
 
-" the following lines come courtesy of github user `arnm`
-" thread: `https://github.com/phildawes/racer/issues/194`
-" jack racer.vim into neocomplete
-if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.rust =
-    \ '[^.[:digit:] *\t]\%(\.\|\::\)\%(\h\w*\)\?'
-
 " vim-slime config (tmux is not default)
 let g:slime_target = "tmux"
+
+" close preview window automatically after autocomplete
+autocmd CompleteDone * pclose
 
 " ------ Filetype-specific ------
 autocmd FileType rust compiler cargo
@@ -82,10 +72,11 @@ autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 " For MacVim GUI
 
 set guioptions-=e
-set guifont=Inconsolata\ for\ Powerline:h14
+" set guifont=Inconsolata\ for\ Powerline:h14
+set guifont=Hack:h14
 
 if has('gui_running')
-  colorscheme zenburn
-  "colorscheme solarized
-  "set background=light
+  "colorscheme zenburn
+  colorscheme solarized
+  set background=light
 endif
