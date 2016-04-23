@@ -53,7 +53,8 @@ set splitbelow splitright
 nnoremap <C-q> :bprevious<CR>
 nnoremap <C-e> :bnext<CR>
 nnoremap <C-t> :enew<CR>
-nnoremap <C-d> :bdelete<CR>
+nnoremap <C-d> :bprevious\|bdelete #<CR>
+
 " Keep unfocused buffers loaded
 set hidden
 
