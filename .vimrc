@@ -16,13 +16,13 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " promptline congif; `:PromptlineSnapshot` generates a new .sh to source in
 " `.bash_profile` or whatever for nice prompt
-let g:promptline_preset = {
-        \'a' : [ promptline#slices#host() ],
-        \'b' : [ promptline#slices#user() ],
-        \'c' : [ promptline#slices#cwd() ],
-        \'y' : [ promptline#slices#vcs_branch() ],
-        \'z' : [ promptline#slices#python_virtualenv() ],
-        \'warn' : [ promptline#slices#last_exit_code() ]}
+" let g:promptline_preset = {
+"         \'a' : [ promptline#slices#host() ],
+"         \'b' : [ promptline#slices#user() ],
+"         \'c' : [ promptline#slices#cwd() ],
+"         \'y' : [ promptline#slices#vcs_branch() ],
+"         \'z' : [ promptline#slices#python_virtualenv() ],
+"         \'warn' : [ promptline#slices#last_exit_code() ]}
 
 " Puts all the syntax errors in a split; you should be able to step through
 " error by error, and syntastic will jump you the relevant lines.
@@ -34,7 +34,7 @@ let g:syntastic_check_on_wq = 0
 " Make syntastic use python3 for syntax checking
 let g:syntastic_python_python_exec = 'python3'
 
-" Syntastic shit
+" Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -45,13 +45,13 @@ set statusline+=%*
 let g:slimv_preferred = 'clozure'
 let g:slimv_repl_split = 4
 let g:slimv_disable_clojure = 2
-" XXX next line is really broken
+" XXX next line is broken
 "let g:slimv_lisp = '"java -cp clojure.jar;clojure-contrib.jar clojure.main"'
 let g:paredit_disable_clojure = 1
 
 " Rust (Racer.vim)
-let g:race_cmd = "/Users/tpm/.rust_source/racer/target/release/racer"
-let $RUST_SRC_PATH="/Users/tpm/.rust_source/rust/src"
+let g:race_cmd = "~/.rust_source/racer/target/release/racer"
+let $RUST_SRC_PATH="~/.rust_source/rust/src"
 
 " vim-slime config (tmux is not default)
 let g:slime_target = "tmux"
