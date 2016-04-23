@@ -73,7 +73,7 @@ autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 
 set guioptions-=e
 " set guifont=Inconsolata\ for\ Powerline:h14
-set guifont=Hack:h14
+set guifont=Hack:h12
 
 if has('gui_running')
   "colorscheme zenburn
