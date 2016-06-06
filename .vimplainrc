@@ -18,8 +18,9 @@ set pastetoggle=<F5>
 " Prevent showing @ signs when a really long line doesn't fit entirely on the
 " screen. See :help 'display'.
 set display+=lastline
-set noshowmode " Hides the default mode text that's usually below the powerline
+set noshowmode    " Hides the default mode text that's usually below the powerline
 set showtabline=2 " always show tabs, even if only one is open
+set backspace=2   " make backspace work like most other apps
 
 " ------ Code format ------
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
