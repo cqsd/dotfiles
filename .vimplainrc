@@ -2,10 +2,11 @@
 let mapleader = ","
 
 " ------ Appearance ------
-set background=dark
-colorscheme zenburn
+" set background=dark
+" colorscheme zenburn
 set number ruler
-set cursorline scrolloff=6
+set cursorline
+set scrolloff=6
 
 " ------ Search ------
 set incsearch hlsearch
@@ -13,8 +14,6 @@ nnoremap \ :noh <CR>
 set ignorecase smartcase
 
 " ------ Editing ------
-set pastetoggle=<F5>
-
 " Prevent showing @ signs when a really long line doesn't fit entirely on the
 " screen. See :help 'display'.
 set display+=lastline
@@ -38,9 +37,6 @@ nnoremap j gj
 nnoremap k gk
 " Snap line under cursor to middle of screen.
 nnoremap <Space> zz
-
-" Autoset a mark for the previous mark
-autocmd BufLeave *.txt normal! mP
 
 " ------ Splits ------
 nnoremap <C-J> <C-W><C-J>
