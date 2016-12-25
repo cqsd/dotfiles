@@ -3,7 +3,9 @@ let mapleader = ","
 
 " ------ Appearance ------
 set background=dark
-colorscheme zenburn
+" colorscheme zenburn
+" colorscheme monokai
+colorscheme solarized
 set number ruler
 set cursorline scrolloff=6
 
@@ -13,7 +15,7 @@ nnoremap \ :noh <CR>
 set ignorecase smartcase
 
 " ------ Editing ------
-set pastetoggle=<F5>
+nnoremap Y y$
 
 " Prevent showing @ signs when a really long line doesn't fit entirely on the
 " screen. See :help 'display'.
@@ -22,7 +24,7 @@ set noshowmode " Hides the default mode text that's usually below the powerline
 set showtabline=2 " always show tabs, even if only one is open
 
 " ------ Code format ------
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set showmatch
 syntax on
 filetype plugin indent on
