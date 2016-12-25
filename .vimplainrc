@@ -2,8 +2,10 @@
 let mapleader = ","
 
 " ------ Appearance ------
-" set background=dark
+set background=dark
 " colorscheme zenburn
+" colorscheme monokai
+colorscheme solarized
 set number ruler
 set cursorline
 set scrolloff=6
@@ -14,6 +16,8 @@ nnoremap \ :noh <CR>
 set ignorecase smartcase
 
 " ------ Editing ------
+nnoremap Y y$
+
 " Prevent showing @ signs when a really long line doesn't fit entirely on the
 " screen. See :help 'display'.
 set display+=lastline
@@ -22,7 +26,7 @@ set showtabline=2 " always show tabs, even if only one is open
 set backspace=2   " make backspace work like most other apps
 
 " ------ Code format ------
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set showmatch
 syntax on
 filetype plugin indent on
