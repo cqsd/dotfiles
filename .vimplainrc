@@ -1,45 +1,43 @@
-" ----------------- VIM BUILTIN SHIT ----------------- "
 let mapleader = ","
 
-" ------ Appearance ------
-set background=dark
-" colorscheme zenburn
-" colorscheme monokai
-colorscheme solarized
-set number ruler
-set cursorline
-set scrolloff=6
-
-" ------ Search ------
-set incsearch hlsearch
-nnoremap \ :noh <CR>
-set ignorecase smartcase
-
 " ------ Editing ------
-nnoremap Y y$
-
-" Prevent showing @ signs when a really long line doesn't fit entirely on the
-" screen. See :help 'display'.
-set display+=lastline
-set noshowmode    " Hides the default mode text that's usually below the powerline
-set showtabline=2 " always show tabs, even if only one is open
-set backspace=2   " make backspace work like most other apps
-
-" ------ Code format ------
+set colorcolumn=80 " let &colorcolumn=80
+nnoremap Y y$      " Make Y match C/D/&c behavior, i.e., yank to end of line
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set showmatch
 syntax on
 filetype plugin indent on
+
+" ------ Appearance ------
+set background=light
+" colorscheme zenburn
+" colorscheme monokai
+colorscheme default
+set number ruler
+set cursorline
+set scrolloff=6
+
+" Prevent showing @ signs when a really long line doesn't fit entirely on the screen
+set display+=lastline
+set noshowmode    " Hide the default mode text that's usually below the powerline
+set showtabline=2 " Always show tabs, even if only one is open
+set backspace=2   " Make backspace work as you're trained to expect in insert mode
+
+" ------ Search ------
+highlight Search ctermbg=220
+set incsearch hlsearch
+nnoremap \ :noh <CR>
+set ignorecase smartcase
 
 " ------ Movement -------
 nnoremap B ^
 nnoremap E $
 
 " Move by visual line instead of actual line; when a line wraps around, j will
-" now move down to the wrapped text instead of skipping over it.
+" now move down to the wrapped text instead of skipping over it
 nnoremap j gj
 nnoremap k gk
-" Snap line under cursor to middle of screen.
+" Snap line under cursor to middle of screen
 nnoremap <Space> zz
 
 " ------ Splits ------
@@ -47,8 +45,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-" Make the splitting behavior a bit more sensible.
-set splitbelow splitright
+set splitbelow splitright " Make the splitting behavior a bit more sensible
 
 " ------ Buffers ------
 nnoremap <C-q> :bprevious<CR>
