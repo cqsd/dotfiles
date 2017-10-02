@@ -1,9 +1,10 @@
+source ~/.vimplainrc
+
 " --------------------- PLUGINS  ---------------------
 execute pathogen#infect()
 map <C-n> :NERDTreeToggle<CR>
 source ~/.neocompleterc
 " source ~/.rainbow-parensrc
-source ~/.vimplainrc
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme='solarized'
@@ -17,6 +18,27 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
+
+" at some point, need to learn vimscript
+function Airlinedark()
+    let g:airline_solarized_bg='dark'
+    AirlineRefresh
+endfunction
+
+function Airlinelight()
+    let g:airline_solarized_bg='light'
+    AirlineRefresh
+endfunction
+
+function SetCScopeMappings()
+    cnoreabbrev csa cs add
+    cnoreabbrev csf cs find
+    cnoreabbrev csg cs find g
+    cnoreabbrev csk cs kill
+    cnoreabbrev csr cs reset
+    cnoreabbrev css cs show
+    cnoreabbrev csh cs help
+endfunction
 "
 " Puts all the syntax errors in a split; you should be able to step through
 " error by error, and syntastic will jump you the relevant lines.
@@ -34,6 +56,9 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" for clang_complete
+let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+
 " rainbow_parens
 " let g:rainbow_active = 1
 
@@ -43,20 +68,15 @@ set statusline+=%*
 " let g:slimv_disable_clojure = 2
 " XXX next line is broken
 " let g:slimv_lisp = '"java -cp clojure.jar;clojure-contrib.jar clojure.main"'
-let g:paredit_disable_clojure = 0
-
-" Rust (Racer.vim)
-let g:race_cmd = "/Users/tpm/.rust_source/racer/target/release/racer"
-let $RUST_SRC_PATH="/Users/tpm/.rust_source/rust/src"
+" let g:paredit_disable_clojure = 0
 
 " vim-slime config (tmux is not default)
-let g:slime_target = "tmux"
+" let g:slime_target = "tmux"
 
 " close preview window automatically after autocomplete
 autocmd CompleteDone * pclose
 
 " ------ Filetype-specific ------
-autocmd FileType rust compiler cargo
 autocmd FileType lisp set completeopt=longest,menuone
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -64,6 +84,7 @@ autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 autocmd BufNewFile,BufReadPost *.boot set filetype=clojure
 " crontab complains if backup is set to no or auto
 autocmd filetype crontab setlocal nobackup nowritebackup
+autocmd filetype c,cpp call SetCScopeMappings()
 "" Tries to evaluate clj buffers on load for vim-clojure-highlight
 "" Broken for some reason; fix later maybe (I don't actually care)
 " autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
@@ -78,4 +99,5 @@ set guifont=Hack:h12
 if has('gui_running')
   " colorscheme solarized
   " set background=light
+  let g:airline_theme='lucius'
 endif
