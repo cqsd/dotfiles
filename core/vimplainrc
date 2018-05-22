@@ -1,4 +1,4 @@
-let mapleader = ','
+let mapleader = '\'
 
 " ------ Editing ------
 " set colorcolumn=80 " let &colorcolumn=80
@@ -7,6 +7,9 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set showmatch
 syntax on
 filetype plugin indent on
+set backupdir=~/.vim/backup/
+set directory=~/.vim/swap/
+set undodir=~/.vim/undo/
 
 " ------ Appearance ------
 set background=light
@@ -26,7 +29,7 @@ set backspace=2   " Make backspace work as you're trained to expect in insert mo
 " ------ Search ------
 highlight Search ctermbg=220
 set incsearch hlsearch
-nnoremap \ :noh <CR>
+map <Leader>h :noh<CR>
 set ignorecase smartcase
 
 " ------ Movement -------
@@ -52,6 +55,10 @@ nnoremap <C-q> :bprevious<CR>
 nnoremap <C-e> :bnext<CR>
 nnoremap <C-t> :enew<CR>
 nnoremap <C-d> :bprevious\|bdelete #<CR>
+" map <Leader>q :bprevious<CR>
+" map <Leader>e :bnext<CR>
+" map <Leader>t :enew<CR>
+" map <Leader>d :bprevious\|bdelete #<CR>
 
 " Keep unfocused buffers loaded
 set hidden
