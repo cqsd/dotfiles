@@ -1,4 +1,14 @@
 #!/bin/bash
+echo This is meant to be run on new machines, as it can be destructive.
+echo Press any key to continue...
+read
+
+mkdir -p ~/bin
+curl -Lso ~/bin/battery https://raw.githubusercontent.com/Goles/Battery/master/battery
+curl -Lso ~/bin/tmux-mem-cpu-load https://phishy.link/shadow/tmux-mem-cpu-load
+echo 'Add ~/bin to your path'
+sleep 0.5
+
 srcdir=$(pwd)
 
 vimplugins=(
@@ -30,7 +40,7 @@ vimplugins=(
 echo About to nuke your ~/.vim/bundle
 read -r -p "Is that OK? [y/N] " response
 case "$response" in
-    [yY][eE][sS]|[yY]) 
+    [yY][eE][sS]|[yY])
         rm -fr ~/.vim/bundle
         mkdir -p ~/.vim/bundle
         pushd ~/.vim/bundle
@@ -45,7 +55,7 @@ esac
 echo About to nuke your dotfiles for tmux, vim, and neocomplete
 read -r -p "Is that OK? [y/N] " response
 case "$response" in
-    [yY][eE][sS]|[yY]) 
+    [yY][eE][sS]|[yY])
         for f in core/*; do
             dest=~/.$(basename $f)
             ln -sf $srcdir/$f $dest && echo Linked $srcdir/$f to $dest
