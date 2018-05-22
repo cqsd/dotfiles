@@ -42,7 +42,7 @@ case "$response" in
         ;;
 esac
 
-echo About to nuke your dotfiles for tmux and vim
+echo About to nuke your dotfiles for tmux, vim, and neocomplete
 read -r -p "Is that OK? [y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY]) 
