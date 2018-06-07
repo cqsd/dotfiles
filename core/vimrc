@@ -22,6 +22,9 @@ let g:airline_right_sep=''
 let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
 
+" CtrlP
+map <Leader>C :CtrlPClearCache<CR>
+
 " at some point, need to learn vimscript
 function Airlinedark()
     let g:airline_solarized_bg='dark'
@@ -62,11 +65,11 @@ endfunction
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 
-let g:syntastic_python_python_exec = 'python'
+let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args='--ignore=E221,E501'
+let g:syntastic_python_flake8_args='--ignore=E221,E266,E501'
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -97,7 +100,7 @@ autocmd FileType haskell call HaskellMode()
 autocmd FileType lisp,clojure set completeopt=longest,menuone foldmethod=syntax
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete keywordprg=python3\ -c\ 'import\ sys;help(sys.argv[1])'
 autocmd FileType markdown set autoindent
-autocmd FileType yaml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 autocmd BufNewFile,BufReadPost *.boot set filetype=clojure
