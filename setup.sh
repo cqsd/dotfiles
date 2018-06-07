@@ -4,8 +4,11 @@ echo Press any key to continue...
 read
 
 mkdir -p ~/bin
+echo Getting battery...
 curl -Lso ~/bin/battery https://raw.githubusercontent.com/Goles/Battery/master/battery
+echo Getting tmux-mem-cpu-load...
 curl -Lso ~/bin/tmux-mem-cpu-load https://phishy.link/shadow/tmux-mem-cpu-load
+chmod +x ~/bin/battery ~/bin/tmux-mem-cpu-load
 echo 'Add ~/bin to your path'
 sleep 0.5
 
@@ -35,6 +38,7 @@ vimplugins=(
     henrik/vim-indexed-search
     tpope/vim-surround
     Shougo/vimproc.vim
+    fatih/vim-go.git
 )
 
 echo About to nuke your ~/.vim/bundle
@@ -45,6 +49,8 @@ case "$response" in
         mkdir -p ~/.vim/bundle
         pushd ~/.vim/bundle
         echo ${vimplugins[*]} | xargs -n1 | lam -s 'https://github.com/' - | xargs -n1 -P8 git clone
+        cd ~/.vim/bundle/vimproc.vim && make && echo 'Built vimproc' || echo vimproc failed to build
+        echo "Remember to run :Helptags (and :GoUpdateBinaries, if you're into that)"
         popd
         ;;
     *)
