@@ -98,7 +98,7 @@ autocmd CompleteDone * pclose
 " ------ Filetype-specific ------
 autocmd FileType haskell call HaskellMode()
 autocmd FileType lisp,clojure set completeopt=longest,menuone foldmethod=syntax
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete keywordprg=python3\ -c\ 'import\ sys;help(sys.argv[1])'
+autocmd FileType python setlocal omnifunc=python3complete#Complete keywordprg=python3\ -c\ 'import\ sys;help(sys.argv[1])'
 autocmd FileType markdown set autoindent
 autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
