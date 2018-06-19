@@ -121,5 +121,6 @@ set guifont=Hack:h12
 if has('gui_running')
   " colorscheme solarized
   " set background=light
+  colorscheme hybrid
   let g:airline_theme='lucius'
 endif
