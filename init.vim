@@ -5,34 +5,37 @@ let g:python3_host_prog=expand('~/.venvs/nvim/bin/python3')
 
 "  initialize vim-plug...
 call plug#begin('~/.vim/bundle')
-Plug 'Rip-Rip/clang_complete'
+" core
 Plug 'kien/ctrlp.vim'
-Plug 'Shougo/deoplete.nvim'
-Plug 'eagletmt/ghcmod-vim'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'eagletmt/neco-ghc'
-Plug 'Shougo/neocomplete.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'edkolev/promptline.vim'
-Plug 'luochen1990/rainbow'
-Plug 'scrooloose/syntastic'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'guns/vim-clojure-static'
-Plug 'altercation/vim-colors-solarized'
-Plug 'tpope/vim-fireplace'
-Plug 'dag/vim-fish'
-Plug 'tpope/vim-fugitive'
-Plug 'w0ng/vim-hybrid'
-Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'henrik/vim-indexed-search'
-Plug 'tpope/vim-surround'
 Plug 'Shougo/vimproc.vim'
-Plug 'davidhalter/jedi-vim'
-Plug 'zchee/deoplete-jedi'
+Plug 'tpope/vim-surround'
+" nice to have
+Plug 'Shougo/deoplete.nvim'
+Plug 'scrooloose/syntastic'
+Plug 'henrik/vim-indexed-search'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'tpope/vim-fugitive'
+" lang-specific, enable as necessary
+Plug 'davidhalter/jedi-vim'  " python
+Plug 'zchee/deoplete-jedi'   " python
+Plug 'Rip-Rip/clang_complete'
+" Plug 'guns/vim-clojure-static'
+" Plug 'tpope/vim-fireplace'
+" Plug 'eagletmt/ghcmod-vim'
+" Plug 'neovimhaskell/haskell-vim'
+" Plug 'eagletmt/neco-ghc'
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'dag/vim-fish'
+" getting sort of extra
+Plug 'scrooloose/nerdtree'
+Plug 'luochen1990/rainbow'
+" absolutely not necessary
+Plug 'altercation/vim-colors-solarized'
+Plug 'w0ng/vim-hybrid'
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end() " you'll need a :PlugInstall the first time
 
 map <C-n> :NERDTreeToggle<CR>
@@ -65,17 +68,6 @@ let g:notes_directories = ['~/notes']
 
 " lol
 map <Leader>C :CtrlPClearCache<CR>
-
-" at some point, need to learn vimscript
-function Airlinedark()
-    let g:airline_solarized_bg='dark'
-    AirlineRefresh
-endfunction
-
-function Airlinelight()
-    let g:airline_solarized_bg='light'
-    AirlineRefresh
-endfunction
 
 function SetCScopeMappings()
     cnoreabbrev csa cs add
