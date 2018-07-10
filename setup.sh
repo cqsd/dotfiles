@@ -64,3 +64,17 @@ case "$response" in
         echo skipping dotfiles
         ;;
 esac
+
+if ! [ -z $(command -v nvim) ]; then
+    read -r -p "Found nvim. Nuke the config? [y/N] " response
+    case "$response" in
+        [yY][eE][sS]|[yY])
+            mkdir -p ~/.config/nvim
+            dest=~/.config/nvim/init.vim
+            ln -sf $srcdir/init.vim $dest && echo Linked $srcdir/init.vim to $dest
+            ;;
+        *)
+            echo skipping nvim
+            ;;
+    esac
+fi
