@@ -1,126 +1,70 @@
-source ~/.vimplainrc
+let mapleader = '\'
 
-" --------------------- PLUGINS  ---------------------
-execute pathogen#infect()
-map <C-n> :NERDTreeToggle<CR>
-source ~/.neocompleterc
-" source ~/.deocompleterc
-" source ~/.rainbow-parensrc
-colorscheme hybrid_material
-set background=dark
+" ------ Editing ------
+" set colorcolumn=80 " let &colorcolumn=80
+nnoremap Y y$      " Make Y match C/D/&c behavior, i.e., yank to end of line
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+set showmatch
+syntax on
+filetype plugin indent on
+set undofile
+set backupdir=~/.vim/backup/
+set directory=~/.vim/swap/
+set undodir=~/.vim/undo/
+set foldmethod=marker
 
-let g:airline_powerline_fonts = 1
-let g:airline_theme='zenburn'
-" let g:airline_left_sep='|'
-set laststatus=2 " Make airline appear all the time
-" Enable the list of buffers and show just the filename
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-" TODO Someday, fix this to just not use airline
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_left_alt_sep = ''
-let g:airline_right_alt_sep = ''
 
-" CtrlP
-map <Leader>C :CtrlPClearCache<CR>
+" ------ Appearance ------
+set background=light
+" colorscheme zenburn
+" colorscheme monokai
+colorscheme default
+set number ruler
+set cursorline
+set scrolloff=6
 
-" at some point, need to learn vimscript
-function Airlinedark()
-    let g:airline_solarized_bg='dark'
-    AirlineRefresh
-endfunction
+" Prevent showing @ signs when a really long line doesn't fit entirely on the screen
+set display+=lastline
+set noshowmode    " Hide the default mode text that's usually below the powerline
+set showtabline=2 " Always show tabs, even if only one is open
+set backspace=2   " Make backspace work as you're trained to expect in insert mode
 
-function Airlinelight()
-    let g:airline_solarized_bg='light'
-    AirlineRefresh
-endfunction
+" ------ Search ------
+highlight Search ctermbg=220
+set incsearch hlsearch
+map <Leader>h :noh<CR>
+set ignorecase smartcase
 
-function HaskellMode()
-    let g:haskell_enable_typeroles = 1
-    let g:haskell_enable_typeroles = 1
-    let g:haskellmode_completion_ghc = 0
-    " increases start time but gives type info in completions
-    " let g:necoghc_enable_detailed_browse = 1
-    " let g:necoghc_use_stack = 1
-    map <Leader>c :GhcModCheck<CR>
-    map <Leader>l :GhcModLint<CR>
-    map <Leader>i :GhcModInfo<CR>
-    setlocal omnifunc=necoghc#omnifunc
-endfunction
+" ------ Movement -------
+nnoremap B ^
+nnoremap E $
 
-function SetCScopeMappings()
-    cnoreabbrev csa cs add
-    cnoreabbrev csf cs find
-    cnoreabbrev csg cs find g
-    cnoreabbrev csk cs kill
-    cnoreabbrev csr cs reset
-    cnoreabbrev css cs show
-    cnoreabbrev csh cs help
-endfunction
+" Move by visual line instead of actual line; when a line wraps around, j will
+" now move down to the wrapped text instead of skipping over it
+nnoremap j gj
+nnoremap k gk
+" Snap line under cursor to middle of screen
+nnoremap <Space> zz
 
-" Syntastic
-"
-" Puts all the syntax errors in the location list
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+" ------ Splits ------
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow splitright " Make the splitting behavior a bit more sensible
 
-let g:syntastic_python_python_exec = 'python3'
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args='--ignore=E221,E266,E501'
+" ------ Buffers ------
+nnoremap <C-q> :bprevious<CR>
+nnoremap <C-e> :bnext<CR>
+nnoremap <C-t> :enew<CR>
+nnoremap <C-d> :bprevious\|bdelete #<CR>
+" map <Leader>q :bprevious<CR>
+" map <Leader>e :bnext<CR>
+" map <Leader>t :enew<CR>
+" map <Leader>d :bprevious\|bdelete #<CR>
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" Keep unfocused buffers loaded
+set hidden
 
-" for clang_complete
-let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
-
-" rainbow_parens
-" let g:rainbow_active = 1
-
-" let g:slimv_preferred = 'sbcl'
-" let g:slimv_preferred = 'clozure'
-" let g:slimv_repl_split = 4
-" let g:slimv_disable_clojure = 2
-" XXX next line is broken
-" let g:slimv_lisp = '"java -cp clojure.jar;clojure-contrib.jar clojure.main"'
-" let g:paredit_disable_clojure = 0
-
-" vim-slime config (tmux is not default)
-" let g:slime_target = "tmux"
-
-" close preview window automatically after autocomplete
-autocmd CompleteDone * pclose
-
-" ------ Filetype-specific ------
-autocmd FileType haskell call HaskellMode()
-autocmd FileType lisp,clojure set completeopt=longest,menuone foldmethod=syntax
-autocmd FileType python setlocal omnifunc=python3complete#Complete keywordprg=python3\ -c\ 'import\ sys;help(sys.argv[1])'
-autocmd FileType markdown set autoindent
-autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
-autocmd BufNewFile,BufReadPost *.boot set filetype=clojure
-" crontab complains if backup is set to no or auto
-autocmd filetype crontab setlocal nobackup nowritebackup
-autocmd filetype c,cpp call SetCScopeMappings()
-"" Tries to evaluate clj buffers on load for vim-clojure-highlight
-"" Broken for some reason; fix later maybe (I don't actually care)
-" autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
-
-command! Figwheel :Piggieback (figwheel-sidecar.repl-api/repl-env)
-
-" MacVim GUI
-set guioptions-=e
-" set guifont=Inconsolata\ for\ Powerline:h14
-set guifont=Hack:h12
-
-if has('gui_running')
-  " colorscheme solarized
-  " set background=light
-  colorscheme hybrid
-  let g:airline_theme='lucius'
-endif
+" Quick-close scratches (preview windows)
+" map <C-\> :pc <CR>
