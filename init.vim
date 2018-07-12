@@ -47,7 +47,7 @@ if has('nvim')
     " use tab for deocomplete
     inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 else
-    source ~/.neocompleterc
+    source ~/.neocomplete.vim
 endif
 colorscheme hybrid_material
 set background=dark
