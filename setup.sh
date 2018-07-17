@@ -33,18 +33,23 @@ vimplugins=(
     # fatih/vim-go.git
 )
 
+clone_repos() {
+    rm -fr ~/.vim/bundle
+    mkdir -p ~/.vim/bundle
+    pushd ~/.vim/bundle
+    for repo in ${vimplugins[*]}; do
+	git clone https://github.com/$repo
+    done
+    cd ~/.vim/bundle/vimproc.vim && make && echo 'Built vimproc' || echo vimproc failed to build
+    # echo "Remember to run :Helptags (and :GoUpdateBinaries, if you're into that)"
+    popd
+}
+
 echo About to nuke your ~/.vim/bundle
 read -r -p "Is that OK? [y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY])
-        rm -fr ~/.vim/bundle
-        mkdir -p ~/.vim/bundle
-        pushd ~/.vim/bundle
-	    # lam might not be a thing ----------v on your machine..
-        echo ${vimplugins[*]} | xargs -n1 | lam -s 'https://github.com/' - | xargs -n1 -P8 git clone
-        cd ~/.vim/bundle/vimproc.vim && make && echo 'Built vimproc' || echo vimproc failed to build
-        # echo "Remember to run :Helptags (and :GoUpdateBinaries, if you're into that)"
-        popd
+	clone_repos
         ;;
     *)
         echo skipping vim plugins
