@@ -79,10 +79,6 @@ function SetCScopeMappings()
     cnoreabbrev csh cs help
 endfunction
 
-function PythonWtf()
-    setlocal omnifunc=python3complete#Complete
-endfunction
-
 " Syntastic
 " Puts all the syntax errors in the location list
 let g:syntastic_always_populate_loc_list = 1
@@ -103,7 +99,6 @@ autocmd CompleteDone * pclose
 
 " ------ Filetype-specific ------
 autocmd FileType lisp,clojure set completeopt=longest,menuone foldmethod=syntax
-autocmd FileType python call PythonWtf()
 autocmd FileType markdown set autoindent
 autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
