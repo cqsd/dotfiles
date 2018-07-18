@@ -19,7 +19,7 @@ Plug 'tpope/vim-fugitive'
 " lang-specific, enable as necessary
 Plug 'davidhalter/jedi-vim'  " python
 Plug 'zchee/deoplete-jedi'   " python
-Plug 'Rip-Rip/clang_complete'
+Plug 'zchee/deoplete-clang'
 " Plug 'guns/vim-clojure-static'
 " Plug 'tpope/vim-fireplace'
 " Plug 'eagletmt/ghcmod-vim'
