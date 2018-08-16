@@ -18,6 +18,10 @@ set number ruler
 set cursorline
 set scrolloff=6
 
+" if you're ever stuck in cmder or something else with (I guess?) non-ANSI
+" terminal color compatibility or whatever
+highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
+
 set display+=lastline " Prevent showing @ signs when a really long line doesn't fit entirely on the screen
 set noshowmode        " Hide the default mode text that's usually below the powerline
 set showtabline=2     " Always show tabs, even if only one is open
