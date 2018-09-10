@@ -67,6 +67,7 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
 
 let g:notes_directories = ['~/notes']
+let g:notes_smart_quotes = 0
 
 " lol
 map <Leader>C :CtrlPClearCache<CR>
