@@ -49,11 +49,13 @@ if has('nvim')
 else
     source ~/.neocomplete.vim
 endif
-colorscheme hybrid_material
-set background=dark
+" colorscheme hybrid_material
+" set background=dark
+colorscheme default
+set background=light
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme='zenburn'
+" let g:airline_theme='hybrid' " we'll just take the default for now
 set laststatus=2 " Make airline appear all the time
 " Enable the list of buffers and show just the filename
 let g:airline#extensions#tabline#enabled = 1
