@@ -1,14 +1,16 @@
 #!/bin/bash
-echo This is meant to be run on new machines, as it can be destructive.
+echo This is minimal-ish vim/tmux setup for new systems.
 echo Press ENTER to continue...
 read
+
+command -v tmux 2>&1 >/dev/null || echo FYI, you don\'t have tmux on this system.
 
 srcdir=$(dirname $0)
 
 # see, this is why we use vim-plug now
 vimplugins=(
     # Rip-Rip/clang_complete
-    kien/ctrlp.vim
+    ctrlpvim/ctrlp.vim
     # Shougo/deoplete.nvim
     # eagletmt/ghcmod-vim
     # neovimhaskell/haskell-vim
@@ -28,7 +30,7 @@ vimplugins=(
     # kristijanhusak/vim-hybrid-material
     henrik/vim-indexed-search
     tpope/vim-surround
-    Shougo/vimproc.vim
+    # Shougo/vimproc.vim
     # fatih/vim-go.git
 )
 
@@ -37,9 +39,9 @@ clone_repos() {
     mkdir -p ~/.vim/bundle
     pushd ~/.vim/bundle
     for repo in ${vimplugins[*]}; do
-	git clone https://github.com/$repo
+        git clone https://github.com/$repo
     done
-    cd ~/.vim/bundle/vimproc.vim && make && echo 'Built vimproc' || echo vimproc failed to build
+    # cd ~/.vim/bundle/vimproc.vim && make && echo 'Built vimproc' || echo vimproc failed to build
     # echo "Remember to run :Helptags (and :GoUpdateBinaries, if you're into that)"
     popd
 }
