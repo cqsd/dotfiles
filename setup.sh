@@ -7,26 +7,25 @@ srcdir=$(pwd)
 
 # see, this is why we use vim-plug now
 vimplugins=(
-    Rip-Rip/clang_complete
+    # Rip-Rip/clang_complete
     kien/ctrlp.vim
-    Shougo/deoplete.nvim
-    eagletmt/ghcmod-vim
-    neovimhaskell/haskell-vim
-    eagletmt/neco-ghc
-    Shougo/neocomplete.vim
+    # Shougo/deoplete.nvim
+    # eagletmt/ghcmod-vim
+    # neovimhaskell/haskell-vim
+    # eagletmt/neco-ghc
+    # Shougo/neocomplete.vim
     scrooloose/nerdtree
-    edkolev/promptline.vim
-    luochen1990/rainbow
+    # luochen1990/rainbow
     scrooloose/syntastic
-    bling/vim-airline
-    vim-airline/vim-airline-themes
-    guns/vim-clojure-static
-    altercation/vim-colors-solarized
-    tpope/vim-fireplace
-    dag/vim-fish
-    tpope/vim-fugitive
-    w0ng/vim-hybrid
-    kristijanhusak/vim-hybrid-material
+    # bling/vim-airline
+    # vim-airline/vim-airline-themes
+    # guns/vim-clojure-static
+    # altercation/vim-colors-solarized
+    # tpope/vim-fireplace
+    # dag/vim-fish
+    # tpope/vim-fugitive
+    # w0ng/vim-hybrid
+    # kristijanhusak/vim-hybrid-material
     henrik/vim-indexed-search
     tpope/vim-surround
     Shougo/vimproc.vim
@@ -44,6 +43,10 @@ clone_repos() {
     # echo "Remember to run :Helptags (and :GoUpdateBinaries, if you're into that)"
     popd
 }
+
+# see vimrc
+mkdir -p ~/.vim/backup/ ~/.vim/swap/ ~/.vim/undo/
+echo Made ~/.vim/backup/ ~/.vim/swap/ ~/.vim/undo/
 
 echo About to nuke your ~/.vim/bundle
 read -r -p "Is that OK? [y/N] " response
