@@ -1,9 +1,9 @@
 #!/bin/bash
 echo This is meant to be run on new machines, as it can be destructive.
-echo Press any key to continue...
+echo Press ENTER to continue...
 read
 
-srcdir=$(pwd)
+srcdir=$(dirname $0)
 
 # see, this is why we use vim-plug now
 vimplugins=(
