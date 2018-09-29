@@ -42,11 +42,7 @@ nnoremap k gk
 " Snap line under cursor to middle of screen
 nnoremap <Space> zz
 
-" ------ Splits ------
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-L> <C-W><C-L>
-" nnoremap <C-H> <C-W><C-H>
+" more intuitive splitting behavior
 set splitbelow splitright
 
 " ------ Buffers ------
