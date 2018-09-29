@@ -25,7 +25,9 @@ Plug 'zchee/deoplete-clang'
 " Plug 'eagletmt/ghcmod-vim'
 " Plug 'neovimhaskell/haskell-vim'
 " Plug 'eagletmt/neco-ghc'
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'zchee/deoplete-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 " Plug 'dag/vim-fish'
 " getting sort of extra
 Plug 'scrooloose/nerdtree'
@@ -45,7 +47,12 @@ if has('nvim')
     " putting it in main vim config
     " source ~/.deocompleterc
     " use tab for deocomplete
-    inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+    inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+    " yeah definitely time to split out into deoplete's own config file
+    let g:deoplete#enable_smart_case = 1
+
+    " deoplete-go shit?
+    let g:deoplete#sources#go#gocode_binary = $GOBIN . '/gocode'
 else
     source ~/.neocomplete.vim
 endif
@@ -69,18 +76,22 @@ let g:airline_right_alt_sep = ''
 let g:notes_directories = ['~/notes']
 let g:notes_smart_quotes = 0
 
+" let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+
 " lol
 map <Leader>C :CtrlPClearCache<CR>
 
-function SetCScopeMappings()
-    cnoreabbrev csa cs add
-    cnoreabbrev csf cs find
-    cnoreabbrev csg cs find g
-    cnoreabbrev csk cs kill
-    cnoreabbrev csr cs reset
-    cnoreabbrev css cs show
-    cnoreabbrev csh cs help
-endfunction
+" vim-surround overrides these
+" function SetCScopeMappings()
+"     cnoreabbrev csa cs add
+"     cnoreabbrev csf cs find
+"     cnoreabbrev csg cs find g
+"     cnoreabbrev csk cs kill
+"     cnoreabbrev csr cs reset
+"     cnoreabbrev css cs show
+"     cnoreabbrev csh cs help
+" endfunction
 
 " Syntastic
 " Puts all the syntax errors in the location list
@@ -109,4 +120,4 @@ autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 autocmd BufNewFile,BufReadPost *.boot set filetype=clojure
 " crontab complains if backup is set to no or auto
 autocmd filetype crontab setlocal nobackup nowritebackup
-autocmd filetype c,cpp call SetCScopeMappings()
+" autocmd filetype c,cpp call SetCScopeMappings()
