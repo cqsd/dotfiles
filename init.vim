@@ -7,7 +7,7 @@ let g:python3_host_prog=expand('~/.venvs/nvim/bin/python3')
 call plug#begin('~/.vim/bundle')
 " core
 Plug 'kien/ctrlp.vim'
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim' " consider building vimproc here with 'do':...
 Plug 'tpope/vim-surround'
 " nice to have
 Plug 'Shougo/deoplete.nvim'
@@ -16,6 +16,8 @@ Plug 'henrik/vim-indexed-search'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
 Plug 'tpope/vim-fugitive'
+" Plug 'mhinz/vim-rfc' " requires +Ruby, which I don't like :)
+" Plug 'vim-scripts/rfc-syntax', { 'for': 'rfc' } " syntax highlighting for RFCs
 " lang-specific, enable as necessary
 Plug 'davidhalter/jedi-vim'  " python
 Plug 'zchee/deoplete-jedi'   " python
