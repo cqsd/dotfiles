@@ -56,7 +56,7 @@ if has('nvim')
     " deoplete-go shit?
     let g:deoplete#sources#go#gocode_binary = $GOBIN . '/gocode'
 else
-    source ~/.neocomplete.vim
+    source ~/.neocompleterc
 endif
 " colorscheme hybrid_material
 " set background=dark
