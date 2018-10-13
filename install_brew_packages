@@ -1,0 +1,29 @@
+#!/bin/bash
+set -eo
+
+ostype=$(uname | tr '[:upper:]' '[:lower:]')
+case $ostype in
+    [dD]arwin*) # idk
+        echo Darwin \"detected\"
+        ;;
+    *)
+        # placeholder
+        echo Not macOS. 
+        exit 1
+        ;;
+esac
+
+# install homebrew if no brew
+brew_install_url='https://raw.githubusercontent.com/Homebrew/install/master/install'
+command -v brew >/dev/null \
+    && echo found brew \
+    || /usr/bin/ruby -e "$(curl -fsSL $brew_install_url)"
+
+for package in $(cat brew_packages); do
+    echo installing $package
+    brew install $package
+done
+
+echo
+echo if you want to use fish, you need to do 'chsh -s fish'
+echo and add fish to /etc shells 'echo $(which fish) | sudo tee -a /etc/shells'

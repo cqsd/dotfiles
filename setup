@@ -1,10 +1,4 @@
 #!/bin/bash
-echo This is minimal-ish vim/tmux setup for new systems.
-echo Press ENTER to continue...
-read
-
-command -v tmux 2>&1 >/dev/null || echo FYI, you don\'t have tmux on this system.
-
 srcdir=$(dirname $0)
 
 # see, this is why we use vim-plug now
@@ -50,7 +44,9 @@ clone_repos() {
 mkdir -p ~/.vim/backup/ ~/.vim/swap/ ~/.vim/undo/
 echo Made ~/.vim/backup/ ~/.vim/swap/ ~/.vim/undo/
 
-echo About to nuke your ~/.vim/bundle
+echo About to overwrite your ~/.vim/bundle
+echo BTW this is deprecated. install_brew_packages gets nvim instead of normal vim
+echo so there\'s no need to do this anymore
 read -r -p "Is that OK? [y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY])
@@ -61,7 +57,7 @@ case "$response" in
         ;;
 esac
 
-echo About to nuke your dotfiles for tmux, vim, and neocomplete
+echo About to overwrite your dotfiles for tmux, vim, and neocomplete
 read -r -p "Is that OK? [y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY])
@@ -76,7 +72,7 @@ case "$response" in
 esac
 
 if ! [ -z $(command -v nvim) ]; then
-    read -r -p "Found nvim. Nuke the config? [y/N] " response
+    read -r -p "Found nvim. Overwrite the config? [y/N] " response
     case "$response" in
         [yY][eE][sS]|[yY])
             mkdir -p ~/.config/nvim
