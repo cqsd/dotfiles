@@ -1,4 +1,7 @@
 #!/bin/bash
+# probably needs xcode
+# xcode-select -p to check, should print a path
+# xcode-select --install (pops up a prompt?) to install cli tools
 set -eo
 
 ostype=$(uname | tr '[:upper:]' '[:lower:]')
