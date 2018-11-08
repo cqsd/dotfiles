@@ -1,0 +1,17 @@
+[user]
+	name = rui
+	email = rui@phishy.link
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+[diff]
+[commit]
+[gpg]
+	program = gpg2
+# [commit]
+# 	gpgsign = true
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    opendiff = difftool -t opendiff
+[url "git@github.com:"]
+    insteadOf = https://github.com/
