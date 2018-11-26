@@ -17,4 +17,4 @@ fyi you can swap all bright/normal colors for a stock macOS Terminal theme with 
 ```
 
 
-[hybrid-link]: https://github.com/lysyi3m/macos-terminal-themes/blob/master/schemes/Hybrid.terminal
+[hybrid-link]: https://raw.githubusercontent.com/lysyi3m/macos-terminal-themes/master/schemes/Hybrid.terminal
