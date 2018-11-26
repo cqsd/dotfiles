@@ -10,7 +10,7 @@ set undofile
 set backupdir=~/.vim/backup/
 set directory=~/.vim/swap/
 set undodir=~/.vim/undo/
-set foldmethod=marker
+" set foldmethod=marker
 
 set background=light
 colorscheme default
@@ -41,6 +41,9 @@ nnoremap j gj
 nnoremap k gk
 " Snap line under cursor to middle of screen
 nnoremap <Space> zz
+
+nnoremap - ddkP
+nnoremap + ddp
 
 " more intuitive splitting behavior
 set splitbelow splitright

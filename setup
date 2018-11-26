@@ -1,5 +1,6 @@
 #!/bin/bash
-srcdir=$(dirname $0)
+srcdir=$(pwd)
+echo $srcdir;read
 
 # see, this is why we use vim-plug now
 vimplugins=(

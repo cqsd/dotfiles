@@ -19,27 +19,36 @@ Plug 'tpope/vim-fugitive'
 " Plug 'mhinz/vim-rfc' " requires +Ruby, which I don't like :)
 " Plug 'vim-scripts/rfc-syntax', { 'for': 'rfc' } " syntax highlighting for RFCs
 " lang-specific, enable as necessary
-Plug 'davidhalter/jedi-vim'  " python
-Plug 'zchee/deoplete-jedi'   " python
-Plug 'zchee/deoplete-clang'
+Plug 'davidhalter/jedi-vim'
+Plug 'zchee/deoplete-jedi'
+" Plug 'zchee/deoplete-clang'
 " Plug 'guns/vim-clojure-static'
-" Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-fireplace'
 " Plug 'eagletmt/ghcmod-vim'
 " Plug 'neovimhaskell/haskell-vim'
 " Plug 'eagletmt/neco-ghc'
 Plug 'zchee/deoplete-go'
+Plug 'StanAngeloff/php.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+Plug 'moll/vim-node' " gf on requires to open appropriate file if local (?)
+Plug 'mxw/vim-jsx'
 " Plug 'dag/vim-fish'
 " getting sort of extra
 Plug 'scrooloose/nerdtree'
-Plug 'luochen1990/rainbow'
+" Plug 'luochen1990/rainbow'
 " absolutely not necessary
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 Plug 'w0ng/vim-hybrid'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" new stuff :)
+Plug 'jparise/vim-graphql'
+
+" dev
+Plug 'cqsd/szygzy'
 call plug#end() " you'll need a :PlugInstall the first time
 
 map <C-n> :NERDTreeToggle<CR>
@@ -58,10 +67,19 @@ if has('nvim')
 else
     source ~/.neocompleterc
 endif
+
 " colorscheme hybrid_material
 " set background=dark
-colorscheme default
-set background=light
+
+" vimr-specific
+if has("gui_vimr")
+  colorscheme hybrid_material
+  set background=dark
+  let g:go_version_warning = 0
+else
+  colorscheme default
+  set background=light
+endif
 
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='hybrid' " we'll just take the default for now
@@ -81,8 +99,9 @@ let g:notes_smart_quotes = 0
 " let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 
-" lol
+" ctrp lol
 map <Leader>C :CtrlPClearCache<CR>
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store'
 
 " vim-surround overrides these
 " function SetCScopeMappings()
@@ -114,7 +133,8 @@ set statusline+=%*
 autocmd CompleteDone * pclose
 
 " ------ Filetype-specific ------
-autocmd FileType lisp,clojure set completeopt=longest,menuone foldmethod=syntax
+autocmd FileType lisp,clojure set completeopt=longest,menuone
+autocmd FileType javascript set shiftwidth=2
 autocmd FileType markdown set autoindent
 autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -122,4 +142,7 @@ autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 autocmd BufNewFile,BufReadPost *.boot set filetype=clojure
 " crontab complains if backup is set to no or auto
 autocmd filetype crontab setlocal nobackup nowritebackup
+
+" set tw=90 " Because of Go, I have to do this here. I dunno, lol
+autocmd filetype go setlocal tw=0 " Go doesn't really do the whole line length thing
 " autocmd filetype c,cpp call SetCScopeMappings()
