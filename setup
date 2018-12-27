@@ -1,6 +1,5 @@
 #!/bin/bash
 srcdir=$(pwd)
-echo $srcdir;read
 
 # see, this is why we use vim-plug now
 vimplugins=(
@@ -59,7 +58,6 @@ case "$response" in
 esac
 
 echo About to overwrite your dotfiles for
-ls ./dotfiles
 read -r -p "Is that OK? [y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY])
