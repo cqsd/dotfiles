@@ -21,6 +21,7 @@ Plug 'tpope/vim-fugitive'
 " lang-specific, enable as necessary
 Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
+Plug 'vim-ruby/vim-ruby'
 " Plug 'zchee/deoplete-clang'
 " Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-fireplace'
@@ -33,6 +34,8 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'moll/vim-node' " gf on requires to open appropriate file if local (?)
 Plug 'mxw/vim-jsx'
+Plug 'hashivim/vim-terraform'
+
 " Plug 'dag/vim-fish'
 " getting sort of extra
 Plug 'scrooloose/nerdtree'
@@ -44,11 +47,7 @@ Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" new stuff :)
 Plug 'jparise/vim-graphql'
-
-" dev
-Plug 'cqsd/szygzy'
 call plug#end() " you'll need a :PlugInstall the first time
 
 map <C-n> :NERDTreeToggle<CR>
@@ -140,6 +139,7 @@ autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 autocmd BufNewFile,BufReadPost *.boot set filetype=clojure
+autocmd BufNewFile,BufReadPost Dockerfile* set filetype=dockerfile
 " crontab complains if backup is set to no or auto
 autocmd filetype crontab setlocal nobackup nowritebackup
 
