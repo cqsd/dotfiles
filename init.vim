@@ -136,13 +136,15 @@ autocmd FileType lisp,clojure set completeopt=longest,menuone
 autocmd FileType javascript set shiftwidth=2
 autocmd FileType markdown set autoindent
 autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType python nnoremap <cr> :w<cr>:!python3 %:p<cr>
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 autocmd BufNewFile,BufReadPost *.boot set filetype=clojure
 autocmd BufNewFile,BufReadPost Dockerfile* set filetype=dockerfile
 " crontab complains if backup is set to no or auto
 autocmd filetype crontab setlocal nobackup nowritebackup
+" Go devs really do the whole line length thing
+autocmd filetype go setlocal tw=0
 
 " set tw=90 " Because of Go, I have to do this here. I dunno, lol
-autocmd filetype go setlocal tw=0 " Go doesn't really do the whole line length thing
 " autocmd filetype c,cpp call SetCScopeMappings()
