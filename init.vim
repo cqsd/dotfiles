@@ -35,11 +35,16 @@ Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink
 Plug 'moll/vim-node' " gf on requires to open appropriate file if local (?)
 Plug 'mxw/vim-jsx'
 Plug 'hashivim/vim-terraform'
+Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+Plug 'racer-rust/vim-racer'
 
 " Plug 'dag/vim-fish'
+
 " getting sort of extra
 Plug 'scrooloose/nerdtree'
 " Plug 'luochen1990/rainbow'
+
 " absolutely not necessary
 " Plug 'altercation/vim-colors-solarized'
 Plug 'w0ng/vim-hybrid'
@@ -80,7 +85,7 @@ else
   set background=light
 endif
 
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 " let g:airline_theme='hybrid' " we'll just take the default for now
 set laststatus=2 " Make airline appear all the time
 " Enable the list of buffers and show just the filename
@@ -137,10 +142,13 @@ autocmd FileType javascript set shiftwidth=2
 autocmd FileType markdown set autoindent
 autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd FileType python nnoremap <cr> :w<cr>:!python3 %:p<cr>
+autocmd FileType terraform nnoremap <cr> :w<cr>:!terraform fmt %<cr><cr>:e!<cr>
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 autocmd BufNewFile,BufReadPost *.boot set filetype=clojure
 autocmd BufNewFile,BufReadPost Dockerfile* set filetype=dockerfile
+" i'm pretty much never not going to use nasm
+autocmd BufNewFile,BufReadPost *.s set filetype=nasm
 " crontab complains if backup is set to no or auto
 autocmd filetype crontab setlocal nobackup nowritebackup
 " Go devs really do the whole line length thing
