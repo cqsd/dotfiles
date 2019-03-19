@@ -35,6 +35,8 @@ Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink
 Plug 'moll/vim-node' " gf on requires to open appropriate file if local (?)
 Plug 'mxw/vim-jsx'
 Plug 'hashivim/vim-terraform'
+Plug 'lervag/vimtex'
+Plug 'leafgarland/typescript-vim'
 
 " Plug 'dag/vim-fish'
 " getting sort of extra
@@ -100,7 +102,7 @@ let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTool
 
 " ctrp lol
 map <Leader>C :CtrlPClearCache<CR>
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|vendor'
 
 " vim-surround overrides these
 " function SetCScopeMappings()
@@ -136,7 +138,7 @@ autocmd FileType lisp,clojure set completeopt=longest,menuone
 autocmd FileType javascript set shiftwidth=2
 autocmd FileType markdown set autoindent
 autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-autocmd FileType python nnoremap <cr> :w<cr>:!python3 %:p<cr>
+" autocmd FileType python nnoremap <cr> :w<cr>:!python3 %:p<cr>
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 autocmd BufNewFile,BufReadPost *.boot set filetype=clojure
