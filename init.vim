@@ -39,7 +39,7 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'racer-rust/vim-racer'
 
-" Plug 'dag/vim-fish'
+Plug 'dag/vim-fish'
 
 " getting sort of extra
 Plug 'scrooloose/nerdtree'
