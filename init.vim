@@ -40,6 +40,8 @@ Plug 'slashmili/alchemist.vim'
 Plug 'racer-rust/vim-racer'
 
 Plug 'dag/vim-fish'
+Plug 'lervag/vimtex'
+Plug 'leafgarland/typescript-vim'
 
 " getting sort of extra
 Plug 'scrooloose/nerdtree'
@@ -105,7 +107,7 @@ let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTool
 
 " ctrp lol
 map <Leader>C :CtrlPClearCache<CR>
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|vendor'
 
 " vim-surround overrides these
 " function SetCScopeMappings()
@@ -141,8 +143,8 @@ autocmd FileType lisp,clojure set completeopt=longest,menuone
 autocmd FileType javascript set shiftwidth=2
 autocmd FileType markdown set autoindent
 autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-autocmd FileType python nnoremap <cr> :w<cr>:!python3 %:p<cr>
-autocmd FileType terraform nnoremap <cr> :w<cr>:!terraform fmt %<cr><cr>:e!<cr>
+autocmd FileType terraform nnoremap <cr> :w<cr>:!/usr/local/bin/terraform fmt %<cr>
+" autocmd FileType python nnoremap <cr> :w<cr>:!python3 %:p<cr>
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 autocmd BufNewFile,BufReadPost *.boot set filetype=clojure
