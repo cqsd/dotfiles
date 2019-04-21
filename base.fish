@@ -21,7 +21,7 @@ function fish_prompt
   else
     set name_color (set_color RED)
   end
-  printf "uid=%s%s|%s%s%s%s%s \$ " \
+  printf "%suid=%s|%s%s%s%s%s \$ " \
     $name_color \
     (id -u) \
     (set_color BLUE) \
