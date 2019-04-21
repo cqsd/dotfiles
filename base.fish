@@ -16,7 +16,7 @@ function __git_branch
 end
 
 function fish_prompt
-  if [ -z $SSH_CLIENT ]
+  if [ -z $SSH_CLIENT ]; and not [ (id -u) -eq 0 ]
     set name_color (set_color GREEN)
   else
     set name_color (set_color RED)
