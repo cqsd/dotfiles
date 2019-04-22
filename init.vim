@@ -13,7 +13,7 @@ Plug 'tpope/vim-surround'
 Plug 'Shougo/deoplete.nvim'
 Plug 'scrooloose/syntastic'
 Plug 'henrik/vim-indexed-search'
-Plug 'xolox/vim-notes'
+" Plug 'xolox/vim-notes' " this is really annoying to use tbh
 Plug 'xolox/vim-misc'
 Plug 'tpope/vim-fugitive'
 " Plug 'mhinz/vim-rfc' " requires +Ruby, which I don't like :)
