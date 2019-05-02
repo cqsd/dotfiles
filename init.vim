@@ -13,7 +13,7 @@ Plug 'tpope/vim-surround'
 Plug 'Shougo/deoplete.nvim'
 Plug 'scrooloose/syntastic'
 Plug 'henrik/vim-indexed-search'
-Plug 'xolox/vim-notes'
+" Plug 'xolox/vim-notes' " this is really annoying to use tbh
 Plug 'xolox/vim-misc'
 Plug 'tpope/vim-fugitive'
 " Plug 'mhinz/vim-rfc' " requires +Ruby, which I don't like :)
@@ -35,13 +35,18 @@ Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink
 Plug 'moll/vim-node' " gf on requires to open appropriate file if local (?)
 Plug 'mxw/vim-jsx'
 Plug 'hashivim/vim-terraform'
+Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+Plug 'racer-rust/vim-racer'
+
+Plug 'dag/vim-fish'
 Plug 'lervag/vimtex'
 Plug 'leafgarland/typescript-vim'
 
-" Plug 'dag/vim-fish'
 " getting sort of extra
 Plug 'scrooloose/nerdtree'
 " Plug 'luochen1990/rainbow'
+
 " absolutely not necessary
 " Plug 'altercation/vim-colors-solarized'
 Plug 'w0ng/vim-hybrid'
@@ -82,7 +87,7 @@ else
   set background=light
 endif
 
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 " let g:airline_theme='hybrid' " we'll just take the default for now
 set laststatus=2 " Make airline appear all the time
 " Enable the list of buffers and show just the filename
@@ -144,6 +149,8 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 autocmd BufNewFile,BufReadPost *.boot set filetype=clojure
 autocmd BufNewFile,BufReadPost Dockerfile* set filetype=dockerfile
+" i'm pretty much never not going to use nasm
+autocmd BufNewFile,BufReadPost *.s set filetype=nasm
 " crontab complains if backup is set to no or auto
 autocmd filetype crontab setlocal nobackup nowritebackup
 " Go devs really do the whole line length thing

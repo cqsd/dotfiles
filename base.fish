@@ -2,7 +2,11 @@ alias e="vim"
 alias l="ls"
 
 function edit_fish_conf
-  e $HOME/config/fish/config.fish
+  e $HOME/.config/fish/config.fish
+end
+
+function venv-start
+  . ~/.venvs/$1/bin/activate.fish
 end
 
 function __git_branch
@@ -12,8 +16,13 @@ function __git_branch
 end
 
 function fish_prompt
-  printf "uid=%s%s|%s%s%s%s%s \$ " \
-    (set_color GREEN) \
+  if [ -z $SSH_CLIENT ]; and not [ (id -u) -eq 0 ]
+    set name_color (set_color GREEN)
+  else
+    set name_color (set_color RED)
+  end
+  printf "%suid=%s|%s%s%s%s%s \$ " \
+    $name_color \
     (id -u) \
     (set_color BLUE) \
     (prompt_pwd) \
