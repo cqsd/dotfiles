@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# disable extname rename warning
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# column view by default
+defaults write com.apple.finder FXPreferredViewStyle Clmv
+
+defaults write com.apple.dock 'orientation' -string 'left'
+
+# ? I forgot what this does
+# defaults write NSGlobalDomain AppleAccentColor -integer 6
+
+# pink highlight colors
+defaults write NSGlobalDomain AppleHighlightColor -string "1.000000 0.749020 0.823529 Pink"
