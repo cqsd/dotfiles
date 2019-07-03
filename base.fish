@@ -21,8 +21,17 @@ function fish_prompt
   else
     set name_color (set_color RED)
   end
-  printf "%suid=%s|%s%s%s%s%s \$ " \
-    $name_color \
+
+  if ! [ -z $AWS_SESSION_TOKEN ];
+      # fish is suuuuuuuuuuuch shit for this kind of stuff
+      set session_name $AWS_VAULT
+      set -q session_name
+      and set session_name "aws="$session_name"|"
+      or set session_name "aws=unknown|"
+  end
+
+  printf "%s%suid=%s|%s%s%s%s%s \$ " \
+    $session_name \
     (id -u) \
     (set_color BLUE) \
     (prompt_pwd) \
