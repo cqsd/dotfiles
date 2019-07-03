@@ -4,8 +4,8 @@ let mapleader = '\'
 map Y y$             " Make Y match C/D/&c behavior, i.e., yank to end of line
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set showmatch
-syntax on
 filetype plugin indent on
+syntax on
 set undofile
 set backupdir=~/.vim/backup/
 set directory=~/.vim/swap/
