@@ -152,7 +152,7 @@ autocmd FileType lisp,clojure set completeopt=longest,menuone
 autocmd FileType javascript set shiftwidth=2
 autocmd FileType markdown set autoindent
 autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-autocmd FileType terraform nnoremap <cr> :w<cr>:!/usr/local/bin/terraform fmt %<cr>
+autocmd FileType terraform nnoremap <cr> :w<cr>:!/usr/local/bin/terraform fmt %<cr>:e!<cr>
 " autocmd FileType python nnoremap <cr> :w<cr>:!python3 %:p<cr>
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
