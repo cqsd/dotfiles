@@ -42,6 +42,16 @@ nnoremap <Space> zz
 nnoremap - ddkP
 nnoremap + ddp
 
+" Remove all trailing whitespace
+map <Leader>$ :%s/\s\+$//g<CR>
+" and any trailing lines that are either empty or contain only whitespace
+" second one important bits are:
+" $ is just end of a line, not newline, so you need a \n or it'll only match
+" the last line of the file
+" but the last line doesn't have a newline so you need a ? too
+" %$ is end of file
+map <Leader>% :g/\v(^\s*$\n?)+%$/d<CR>
+
 " more intuitive splitting behavior
 set splitbelow splitright
 
