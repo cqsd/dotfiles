@@ -21,6 +21,9 @@ Plug 'tpope/vim-fugitive'
 " lang-specific, enable as necessary
 Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
+" this gives updated python syntax highlighting (mostly for fstrings, see
+" below)
+Plug 'vim-python/python-syntax'
 Plug 'vim-ruby/vim-ruby'
 " Plug 'zchee/deoplete-clang'
 " Plug 'guns/vim-clojure-static'
@@ -70,6 +73,12 @@ if has('nvim')
 
     " deoplete-go shit?
     let g:deoplete#sources#go#gocode_binary = $GOBIN . '/gocode'
+
+    " highlight python>=3.6 fstrings
+    " strike that, actually just turn on all the features why not
+    " it seems to pretty much replace built in python support + adds the
+    " missing stuff so no harm afaict
+    let g:python_highlight_all = 1
 else
     source ~/.neocompleterc
 endif
