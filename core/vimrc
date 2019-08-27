@@ -43,7 +43,7 @@ nnoremap - ddkP
 nnoremap + ddp
 
 " Remove all trailing whitespace
-map <Leader>$ :%s/\s\+$//g<CR>
+map <Leader>$ :%s/\s\+$//g<CR>:w<CR>
 " and any trailing lines that are either empty or contain only whitespace
 " second one important bits are:
 " $ is just end of a line, not newline, so you need a \n or it'll only match

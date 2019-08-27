@@ -40,11 +40,12 @@ Plug 'mxw/vim-jsx'
 Plug 'hashivim/vim-terraform'
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
-Plug 'racer-rust/vim-racer'
+" Plug 'racer-rust/vim-racer'
+Plug 'zah/nim.vim'
 
 Plug 'dag/vim-fish'
 Plug 'lervag/vimtex'
-Plug 'leafgarland/typescript-vim'
+" Plug 'leafgarland/typescript-vim'
 
 " getting sort of extra
 Plug 'scrooloose/nerdtree'
@@ -52,10 +53,10 @@ Plug 'scrooloose/nerdtree'
 
 " absolutely not necessary
 " Plug 'altercation/vim-colors-solarized'
-Plug 'w0ng/vim-hybrid'
-Plug 'kristijanhusak/vim-hybrid-material'
+" Plug 'w0ng/vim-hybrid'
+" Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline-themes'
 
 Plug 'jparise/vim-graphql'
 call plug#end() " you'll need a :PlugInstall the first time
@@ -86,13 +87,14 @@ endif
 " colorscheme hybrid_material
 " set background=dark
 
+colorscheme default
 " vimr-specific
 if has("gui_vimr")
-  colorscheme hybrid_material
+  " colorscheme hybrid_material
   set background=dark
   let g:go_version_warning = 0
 else
-  colorscheme default
+  " colorscheme default
   set background=light
 endif
 
