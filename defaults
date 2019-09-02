@@ -13,3 +13,7 @@ defaults write com.apple.dock 'orientation' -string 'left'
 
 # pink highlight colors
 defaults write NSGlobalDomain AppleHighlightColor -string "1.000000 0.749020 0.823529 Pink"
+
+# stop putting screenshots on the desktop
+mkdir -p ~/Desktop/screenshots
+defaults write com.apple.screencapture location ~/Desktop/screenshots
