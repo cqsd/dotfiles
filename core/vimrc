@@ -50,7 +50,11 @@ map <Leader>$ :%s/\s\+$//g<CR>:w<CR>
 " the last line of the file
 " but the last line doesn't have a newline so you need a ? too
 " %$ is end of file
-map <Leader>% :g/\v(^\s*$\n?)+%$/d<CR>
+map <Leader>% :g/\v(^\s*$\n?)+%$/d<CR>:w<CR>
+" pretty format json
+map <Leader>J :%!python -m json.tool<CR>
+" minify json (requires jq...)
+map <Leader>j :%!jq -c .<CR>
 
 " more intuitive splitting behavior
 set splitbelow splitright

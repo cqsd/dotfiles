@@ -6,7 +6,7 @@ let g:python3_host_prog=expand('~/.venvs/nvim/bin/python3')
 "  initialize vim-plug...
 call plug#begin('~/.vim/bundle')
 " core
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Shougo/vimproc.vim' " consider building vimproc here with 'do':...
 Plug 'tpope/vim-surround'
 " nice to have
@@ -37,6 +37,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'moll/vim-node' " gf on requires to open appropriate file if local (?)
 Plug 'mxw/vim-jsx'
+Plug 'leafgarland/typescript-vim'
 Plug 'hashivim/vim-terraform'
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
@@ -45,7 +46,6 @@ Plug 'zah/nim.vim'
 
 Plug 'dag/vim-fish'
 Plug 'lervag/vimtex'
-" Plug 'leafgarland/typescript-vim'
 
 " getting sort of extra
 Plug 'scrooloose/nerdtree'
@@ -91,7 +91,7 @@ colorscheme default
 " vimr-specific
 if has("gui_vimr")
   " colorscheme hybrid_material
-  set background=dark
+  set background=light
   let g:go_version_warning = 0
 else
   " colorscheme default
@@ -157,7 +157,9 @@ autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth
 " mapping to just <CR> breaks syntastic (cause it tries to save the scratch
 " buffer) so switch to leader (f for format?)
 autocmd FileType terraform nnoremap <Leader>f :w<cr>:!/usr/local/bin/terraform fmt %<cr>:e!<cr>
-" autocmd FileType python nnoremap <cr> :w<cr>:!python3 %:p<cr>
+" unquote resource definitions
+autocmd FileType terraform nnoremap <Leader>q :%s/^\(resource\|data\) \+\"\?\(.*\)\"\? \+\"\(.*\)\" \+{/\1 \2 \3 {/g<cr>:w<cr>:e!<cr>
+autocmd FileType python nnoremap <Leader>R :w<cr>:!python3 %:p<cr>
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
 autocmd BufNewFile,BufReadPost *.boot set filetype=clojure

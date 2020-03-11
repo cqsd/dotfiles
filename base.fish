@@ -22,7 +22,7 @@ function fish_prompt
     set name_color (set_color RED)
   end
 
-  if ! [ -z $AWS_SESSION_TOKEN ];
+  if not [ -z $AWS_SESSION_TOKEN ];
       # fish is suuuuuuuuuuuch shit for this kind of stuff
       set session_name $AWS_VAULT
       set -q session_name
