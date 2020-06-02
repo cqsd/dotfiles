@@ -31,32 +31,34 @@ Plug 'tpope/vim-fireplace'
 " Plug 'eagletmt/ghcmod-vim'
 " Plug 'neovimhaskell/haskell-vim'
 " Plug 'eagletmt/neco-ghc'
-Plug 'zchee/deoplete-go'
 Plug 'StanAngeloff/php.vim'
+" golang
+Plug 'zchee/deoplete-go'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+" js
 Plug 'moll/vim-node' " gf on requires to open appropriate file if local (?)
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
+" terraform
 Plug 'hashivim/vim-terraform'
+" elixir
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
+" rust
 " Plug 'racer-rust/vim-racer'
+" nim
 Plug 'zah/nim.vim'
 
 Plug 'dag/vim-fish'
 Plug 'lervag/vimtex'
 
-" getting sort of extra
+" kinda useless
 Plug 'scrooloose/nerdtree'
 " Plug 'luochen1990/rainbow'
 
-" absolutely not necessary
-" Plug 'altercation/vim-colors-solarized'
-" Plug 'w0ng/vim-hybrid'
-" Plug 'kristijanhusak/vim-hybrid-material'
+" TODO this is honestly useless just rewrite the statusline
 Plug 'bling/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 
 Plug 'jparise/vim-graphql'
 call plug#end() " you'll need a :PlugInstall the first time
@@ -120,16 +122,9 @@ let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTool
 map <Leader>C :CtrlPClearCache<CR>
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|vendor'
 
-" vim-surround overrides these
-" function SetCScopeMappings()
-"     cnoreabbrev csa cs add
-"     cnoreabbrev csf cs find
-"     cnoreabbrev csg cs find g
-"     cnoreabbrev csk cs kill
-"     cnoreabbrev csr cs reset
-"     cnoreabbrev css cs show
-"     cnoreabbrev csh cs help
-" endfunction
+" golang shit
+let g:go_fmt_autosave = 1
+let g:go_fmt_fail_silently = 0
 
 " Syntastic
 " Puts all the syntax errors in the location list
@@ -138,9 +133,16 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 
+" this is basically enduser-facing syntastic metaprogramming hax.
+" see :help syntastic-config-makeprg
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args='--ignore=E221,E266,E501'
+
+let g:syntastic_typescript_checkers = ['eslint']
+" use eslint_d.js (which runs an eslint daemon---wild!)
+let g:syntastic_typescript_eslint_exec = 'eslint_d'
+let g:syntastic_typescript_eslint_args='--ext .ts'
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -151,12 +153,13 @@ autocmd CompleteDone * pclose
 
 " ------ Filetype-specific ------
 autocmd FileType lisp,clojure set completeopt=longest,menuone
-autocmd FileType javascript set shiftwidth=2
+autocmd FileType javascript,typescript set shiftwidth=2
 autocmd FileType markdown set autoindent
 autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 " mapping to just <CR> breaks syntastic (cause it tries to save the scratch
 " buffer) so switch to leader (f for format?)
 autocmd FileType terraform nnoremap <Leader>f :w<cr>:!/usr/local/bin/terraform fmt %<cr>:e!<cr>
+autocmd FileType go nnoremap <Leader>f :GoFmt<cr>
 " unquote resource definitions
 autocmd FileType terraform nnoremap <Leader>q :%s/^\(resource\|data\) \+\"\?\(.*\)\"\? \+\"\(.*\)\" \+{/\1 \2 \3 {/g<cr>:w<cr>:e!<cr>
 autocmd FileType python nnoremap <Leader>R :w<cr>:!python3 %:p<cr>
