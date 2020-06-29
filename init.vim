@@ -5,63 +5,69 @@ let g:python3_host_prog=expand('~/.venvs/nvim/bin/python3')
 
 "  initialize vim-plug...
 call plug#begin('~/.vim/bundle')
-" core
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Shougo/vimproc.vim' " consider building vimproc here with 'do':...
 Plug 'tpope/vim-surround'
-" nice to have
 Plug 'Shougo/deoplete.nvim'
 Plug 'scrooloose/syntastic'
 Plug 'henrik/vim-indexed-search'
-" Plug 'xolox/vim-notes' " this is really annoying to use tbh
 Plug 'xolox/vim-misc'
 Plug 'tpope/vim-fugitive'
-" Plug 'mhinz/vim-rfc' " requires +Ruby, which I don't like :)
-" Plug 'vim-scripts/rfc-syntax', { 'for': 'rfc' } " syntax highlighting for RFCs
-" lang-specific, enable as necessary
+
+" = lang-specific, enable as necessary
+" = python
 Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
-" this gives updated python syntax highlighting (mostly for fstrings, see
-" below)
-Plug 'vim-python/python-syntax'
+Plug 'vim-python/python-syntax' " updates fstring highlighting
+
+" = ruby
 Plug 'vim-ruby/vim-ruby'
+
+" = C/C++
 " Plug 'zchee/deoplete-clang'
+
+" = clojure
 " Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-fireplace'
+
+" = haskell
 " Plug 'eagletmt/ghcmod-vim'
 " Plug 'neovimhaskell/haskell-vim'
 " Plug 'eagletmt/neco-ghc'
+
+" = php
 Plug 'StanAngeloff/php.vim'
-" golang
+
+" = golang
 Plug 'zchee/deoplete-go'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-" js
+" Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+
+" = js
 Plug 'moll/vim-node' " gf on requires to open appropriate file if local (?)
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
-" terraform
-Plug 'hashivim/vim-terraform'
-" elixir
+
+" = elixir
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
-" rust
-" Plug 'racer-rust/vim-racer'
-" nim
-Plug 'zah/nim.vim'
 
+" = rust
+" Plug 'racer-rust/vim-racer'
+
+" = misc
+" Plug 'zah/nim.vim'
 Plug 'dag/vim-fish'
 Plug 'lervag/vimtex'
+Plug 'hashivim/vim-terraform'
+Plug 'uarun/vim-protobuf'
+Plug 'jparise/vim-graphql'
 
 " kinda useless
 Plug 'scrooloose/nerdtree'
-" Plug 'luochen1990/rainbow'
+Plug 'bling/vim-airline' " TODO please just rewrite the statusline
 
-" TODO this is honestly useless just rewrite the statusline
-Plug 'bling/vim-airline'
-
-Plug 'jparise/vim-graphql'
-call plug#end() " you'll need a :PlugInstall the first time
+call plug#end() " NOTE you'll need a :PlugInstall the first time
 
 map <C-n> :NERDTreeToggle<CR>
 if has('nvim')
@@ -72,10 +78,10 @@ if has('nvim')
     " use tab for deocomplete
     inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
     " yeah definitely time to split out into deoplete's own config file
-    let g:deoplete#enable_smart_case = 1
-
-    " deoplete-go shit?
-    let g:deoplete#sources#go#gocode_binary = $GOBIN . '/gocode'
+    call deoplete#custom#option({
+    \ 'enable_smart_case': 1,
+    \ 'omni_patterns': { 'go': '[^. *\t]\.\w*' },
+    \ })
 
     " highlight python>=3.6 fstrings
     " strike that, actually just turn on all the features why not
@@ -86,22 +92,10 @@ else
     source ~/.neocompleterc
 endif
 
-" colorscheme hybrid_material
-" set background=dark
-
 colorscheme default
-" vimr-specific
-if has("gui_vimr")
-  " colorscheme hybrid_material
-  set background=light
-  let g:go_version_warning = 0
-else
-  " colorscheme default
-  set background=light
-endif
+set background=light  " TODO
 
 let g:airline_powerline_fonts = 0
-" let g:airline_theme='hybrid' " we'll just take the default for now
 set laststatus=2 " Make airline appear all the time
 " Enable the list of buffers and show just the filename
 let g:airline#extensions#tabline#enabled = 1
@@ -112,13 +106,13 @@ let g:airline_right_sep=''
 let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
 
+" XXX unused
 let g:notes_directories = ['~/notes']
 let g:notes_smart_quotes = 0
 
 " let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 
-" ctrp lol
 map <Leader>C :CtrlPClearCache<CR>
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|vendor'
 
@@ -127,13 +121,13 @@ let g:go_fmt_autosave = 1
 let g:go_fmt_fail_silently = 0
 
 " Syntastic
-" Puts all the syntax errors in the location list
+" Put all the syntax errors in the location list
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 
-" this is basically enduser-facing syntastic metaprogramming hax.
+" this is basically user-facing syntastic metaprogramming hax
 " see :help syntastic-config-makeprg
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['flake8']
