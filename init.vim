@@ -24,7 +24,8 @@ Plug 'vim-python/python-syntax' " updates fstring highlighting
 Plug 'vim-ruby/vim-ruby'
 
 " = C/C++
-" Plug 'zchee/deoplete-clang'
+Plug 'zchee/deoplete-clang'
+" Plug 'xavierd/clang_complete' " this is good too
 
 " = clojure
 " Plug 'guns/vim-clojure-static'
@@ -41,7 +42,6 @@ Plug 'StanAngeloff/php.vim'
 " = golang
 Plug 'zchee/deoplete-go'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
 " = js
 Plug 'moll/vim-node' " gf on requires to open appropriate file if local (?)
@@ -112,6 +112,11 @@ let g:notes_smart_quotes = 0
 
 " let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang/'
+let g:deoplete#sources#clang#flags = [
+    \ "-DDEBUG",
+    \ "-isystem", "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
+    \ ]
 
 map <Leader>C :CtrlPClearCache<CR>
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|vendor'
@@ -154,6 +159,8 @@ autocmd FileType html,htmldjango,css,yaml set tabstop=2 softtabstop=2 shiftwidth
 " buffer) so switch to leader (f for format?)
 autocmd FileType terraform nnoremap <Leader>f :w<cr>:!/usr/local/bin/terraform fmt %<cr>:e!<cr>
 autocmd FileType go nnoremap <Leader>f :GoFmt<cr>
+autocmd FileType go nnoremap <Leader>r :GoRun<cr>
+autocmd FileType go nnoremap <Leader>b :GoBuild<cr>
 " unquote resource definitions
 autocmd FileType terraform nnoremap <Leader>q :%s/^\(resource\|data\) \+\"\?\(.*\)\"\? \+\"\(.*\)\" \+{/\1 \2 \3 {/g<cr>:w<cr>:e!<cr>
 autocmd FileType python nnoremap <Leader>R :w<cr>:!python3 %:p<cr>
