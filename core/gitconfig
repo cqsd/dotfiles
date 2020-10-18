@@ -1,17 +1,22 @@
 [user]
-	name = rui
-	email = rui@uwu.zone
+    name = cqsd
+    email = ""
+    signingkey = 90F6BAA79578E949
 [core]
-	editor = vim
-	excludesfile = ~/.gitignore_global
+    editor = vim
+    excludesfile = ~/.gitignore_global
 [diff]
 [commit]
 [gpg]
-	program = gpg2
+    program = gpg2
 # [commit]
-# 	gpgsign = true
+#   gpgsign = true
 [alias]
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     opendiff = difftool -t opendiff
+
+# [http]
+#     followRedirects = true
+
 [url "git@github.com:"]
     insteadOf = https://github.com/
