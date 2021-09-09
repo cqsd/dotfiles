@@ -16,7 +16,7 @@ function fish_prompt
   # things like aws_session and git branch aren't always printed, we put this
   # in a variable first. empty variable subtitution is fine
 
-  set prompt_date (set_color RED)(date "+%m/%d %H:%M:%S")
+  set prompt_date (set_color RED)'['(date "+%d/%m/%y %H:%M:%S")]
 
   if [ $_status -ne 0 ]
     set prompt_prompt ' '(set_color RED)'('$_status') '(set_color GREEN)"\$ "
@@ -38,6 +38,8 @@ function fish_prompt
 
   if set git_branch_name (git symbolic-ref --short head 2>/dev/null)
     set prompt_git_branch (set_color cyan)' 'git:$git_branch_name
+  else
+    set prompt_git_branch ""
   end
 
   printf "%s%s%s\n%s%s" \
