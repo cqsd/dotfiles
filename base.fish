@@ -16,7 +16,7 @@ function fish_prompt
   # things like aws_session and git branch aren't always printed, we put this
   # in a variable first. empty variable subtitution is fine
 
-  set prompt_date (set_color RED)(date "+%m/%d %H:%M:%S")
+  set prompt_date (set_color RED)'['(date "+%d/%m/%y %H:%M:%S")]
 
   if [ $_status -ne 0 ]
     set prompt_prompt ' '(set_color RED)'('$_status') '(set_color GREEN)"\$ "
