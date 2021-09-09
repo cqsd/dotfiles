@@ -1,19 +1,37 @@
 #!/bin/sh
 
-# disable extname rename warning
+# disable file extension rename warning
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-# column view by default
+# show file extensions in finder
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# column view by default in finder
 defaults write com.apple.finder FXPreferredViewStyle Clmv
 
+# dock on left
 defaults write com.apple.dock 'orientation' -string 'left'
 
-# ? I forgot what this does
-# defaults write NSGlobalDomain AppleAccentColor -integer 6
+# smaller dock icons
+defaults write com.apple.dock tilesize -int 34
 
-# pink highlight colors
+# pink highlight color
 defaults write NSGlobalDomain AppleHighlightColor -string "1.000000 0.749020 0.823529 Pink"
 
-# stop putting screenshots on the desktop
+# put screenshots in ~/Desktop/screenshots
 mkdir -p ~/Desktop/screenshots
 defaults write com.apple.screencapture location ~/Desktop/screenshots
+
+# turn off the hold-to-show-accents thing
+defaults write -g ApplePressAndHoldEnabled -bool false
+
+# faster repeat + shorter delay on key hold
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write NSGlobalDomain KeyRepeat -int 2
+
+# turn off .DS_Store
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# password after screensaver
+defaults write com.apple.screensaver askForPassword -bool true
+defaults write com.apple.screensaver askForPasswordDelay -int 0
