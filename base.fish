@@ -38,6 +38,8 @@ function fish_prompt
 
   if set git_branch_name (git symbolic-ref --short head 2>/dev/null)
     set prompt_git_branch (set_color cyan)' 'git:$git_branch_name
+  else
+    set prompt_git_branch ""
   end
 
   printf "%s%s%s\n%s%s" \
