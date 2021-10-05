@@ -18,16 +18,15 @@ set number ruler
 set cursorline
 set scrolloff=6
 
-" if you're ever stuck in cmder or something else with (I guess?) non-ANSI
-" terminal color compatibility or whatever
-highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
+highlight Visual cterm=BOLD ctermbg=yellow ctermfg=black
+highlight Search cterm=BOLD ctermbg=yellow ctermfg=black
+highlight IncSearch cterm=BOLD ctermbg=yellow ctermfg=black
 
 set display+=lastline " Prevent showing @ signs when a really long line doesn't fit entirely on the screen
 set noshowmode        " Hide the default mode text that's usually below the powerline
 set showtabline=2     " Always show tabs, even if only one is open
 set backspace=2       " Make backspace work as you're trained to expect in insert mode
 
-highlight Search ctermbg=220
 set incsearch hlsearch
 map <Leader>h :noh<CR>
 set ignorecase smartcase " only do case-sensitive if you type caps
